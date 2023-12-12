@@ -20,3 +20,6 @@ def solve_square_equation(
     root_left = (-linear_coefficient - math.sqrt(discriminant)) / (2 * square_coefficient)
     root_right = (-linear_coefficient + math.sqrt(discriminant)) / (2 * square_coefficient)
     return root_left, root_right
+
+if __name__ == '__main__':
+    print(solve_square_equation(0, 0, 3))
