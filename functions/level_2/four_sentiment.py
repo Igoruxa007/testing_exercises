@@ -9,3 +9,6 @@ def check_tweet_sentiment(text: str, good_words: set[str], bad_words: set[str]) 
     if good_words_num > bad_words_num:
         return "GOOD"
     return "BAD"
+
+if __name__ == '__main__':
+    print(check_tweet_sentiment('asdf asdf  asdfh kjh jhas', ['Asdf'], ['kjh']))
