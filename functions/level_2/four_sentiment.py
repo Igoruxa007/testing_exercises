@@ -10,5 +10,5 @@ def check_tweet_sentiment(text: str, good_words: set[str], bad_words: set[str]) 
         return "GOOD"
     return "BAD"
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     print(check_tweet_sentiment('asdf asdf  asdfh kjh jhas', ['Asdf'], ['kjh']))

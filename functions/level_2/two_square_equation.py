@@ -21,5 +21,5 @@ def solve_square_equation(
     root_right = (-linear_coefficient + math.sqrt(discriminant)) / (2 * square_coefficient)
     return root_left, root_right
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     print(solve_square_equation(0, 0, 3))

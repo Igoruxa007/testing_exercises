@@ -10,5 +10,5 @@ def replace_word(text: str, replace_from: str, replace_to: str) -> str:
 
     return ' '.join(new_words)
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     print(replace_word('ab bc cd ef', 'bc', 'cb'))

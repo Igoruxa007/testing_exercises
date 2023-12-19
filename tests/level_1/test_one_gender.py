@@ -1,14 +1,16 @@
 from functions.level_1.one_gender import genderalize
+import pytest
 
+@pytest.mark.parametrize(
+    "verb_male, verb_female, gender, expected_result",
+    [
+        ('a', 'b', 'male', 'a'),
+        ('a', 'b', 'female', 'b'),
+        ('a', 'b', 'abc', 'b'),
+        ('', '', 'male', '')
+    ],
+    ids=['gender male', 'gender_female', 'gender_any_str', 'empty_verb']
+)
 
-def test_genderalize_gender_male():
-    assert genderalize('a', 'b', 'male') == 'a'
-
-def test_genderalize_gender_female():
-    assert genderalize('a', 'b', 'female') == 'b'
-
-def test_genderalize_gender_any_str():
-    assert genderalize('a', 'b', 'abc') == 'b'
-
-def test_genderalize_empty_verb():
-    assert genderalize('', '', 'male') == ''
+def test_genderalize(verb_male, verb_female, gender, expected_result):
+    assert genderalize(verb_male, verb_female, gender) == expected_result
