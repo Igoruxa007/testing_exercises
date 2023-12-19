@@ -30,6 +30,11 @@ def one_card():
     return card
 
 @pytest.fixture
+def cards_with_same_number(one_card):
+    one_card.append(BankCard('1234', 'Irina'))
+    return one_card
+
+@pytest.fixture
 def expense(one_card):
     expense = Expense(amount=20, card=one_card[0], spent_in='ololo', spent_at=datetime.datetime(2023, 11, 15, 15, 18))
     return expense

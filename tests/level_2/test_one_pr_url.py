@@ -1,4 +1,5 @@
 from functions.level_2.one_pr_url import is_github_pull_request_url
+import pytest
 
 
 def test__is_github_pull_request_url__success_case():
