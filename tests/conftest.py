@@ -3,6 +3,7 @@ import datetime
 import pytest
 
 from functions.level_1.four_bank_parser import SmsMessage, BankCard, Expense
+from functions.level_3 import models
 
 @pytest.fixture
 def today_date_time():
@@ -38,3 +39,18 @@ def cards_with_same_number(one_card):
 def expense(one_card):
     expense = Expense(amount=20, card=one_card[0], spent_in='ololo', spent_at=datetime.datetime(2023, 11, 15, 15, 18))
     return expense
+
+@pytest.fixture
+def any_expense():
+    currency = models.Currency.RUB
+    card_1 = models.BankCard(last_digits='1234', owner='Igor')
+    card_2 = models.BankCard(last_digits='3456', owner='Ivan')
+    spent_at_1 = datetime.datetime(2023, 11, 5, 10, 10)
+    spent_at_2 = datetime.datetime(2023, 10, 5, 10, 10) 
+    category = models.ExpenseCategory.SUPERMARKET
+    any_expense=[
+        models.Expense(amount=10, currency=currency, card=card_1, spent_in='magaz', spent_at=spent_at_1, category=category),
+        models.Expense(amount=20, currency=currency, card=card_2, spent_in='magaz', spent_at=spent_at_1, category=category),
+        models.Expense(amount=20, currency=currency, card=card_2, spent_in='magaz', spent_at=spent_at_2, category=category),
+    ]
+    return any_expense
