@@ -66,7 +66,7 @@ def category_bar_rest():
     return models.ExpenseCategory.BAR_RESTAURANT
 
 @pytest.fixture
-def any_expense_2(any_expense):
+def expense_with_different_dates(any_expense):
     currency = models.Currency.RUB
     card = models.BankCard(last_digits='1234', owner='Igor')
     spent_at = datetime.datetime(2023, 12, 5, 10, 10)
@@ -76,7 +76,7 @@ def any_expense_2(any_expense):
     return any_expense
 
 @pytest.fixture
-def any_expense_3(any_expense):
+def expense_with_same_elements(any_expense):
     for _ in range(2):
         any_expense.append(any_expense[0])
     for _ in range(3):
@@ -84,5 +84,5 @@ def any_expense_3(any_expense):
     return any_expense
 
 @pytest.fixture
-def any_expense_3_result(any_expense):
+def expense_with_same_elements_result(any_expense):
     return [any_expense[0]]*3 + [any_expense[1]]*4
