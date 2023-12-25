@@ -4,6 +4,7 @@ import pytest
 
 from functions.level_1.four_bank_parser import SmsMessage, BankCard, Expense
 from functions.level_3 import models
+from functions.level_4.two_students import Student
 
 @pytest.fixture
 def today_date_time():
@@ -86,3 +87,12 @@ def expense_with_same_elements(any_expense):
 @pytest.fixture
 def expense_with_same_elements_result(any_expense):
     return [any_expense[0]]*3 + [any_expense[1]]*4
+
+@pytest.fixture
+def studentstudents_with_tg():
+    students = [
+        Student(first_name="Andrey", last_name= "Ivanov", telegram_account= "@AI"),
+        Student(first_name="Ivan", last_name= "Andreykin", telegram_account= "@IA"),
+        Student(first_name="First", last_name= "Second", telegram_account=None)
+        ]
+    return students
