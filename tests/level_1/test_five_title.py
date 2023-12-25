@@ -1,31 +1,27 @@
 from functions.level_1.five_title import change_copy_item
+import pytest
 
+@pytest.mark.parametrize(
+        "text, expected_result",
+        [
+            ('a'*92, 'a'*92),
+            ('a'*91, f'Copy of {'a'*91}'),
+            ('Copy of abcd', 'Copy of abcd (2)'),
+            ('Copy of abcd (1)', 'Copy of abcd (2)')
+        ]
+)
 
-def test_change_copy_item_title_len_equals_92():
-    text = 'a'*92
-    assert change_copy_item(text) == text
+def test_change_copy_item_title_len_equals_92(text, expected_result):
+    assert change_copy_item(text) == expected_result
 
-def test_change_copy_item_title_len_les_92():
-    text = 'a'*91
-    assert change_copy_item(text) == f'Copy of {text}'
+@pytest.mark.parametrize(
+        "text, max, expected_result",
+        [
+            ('a'*10, 10,  'a'*10),
+            ('a'*11, 20,  f'Copy of {'a'*11}'),
+            ('Copy of abcd', 30, 'Copy of abcd (2)')
+        ]
+)
 
-def test_change_copy_item_change_max_title_len_equal():
-    max = 10
-    text = 'a'*max
-    assert change_copy_item(text, max) == text
-
-def test_change_copy_item_change_max_title_len_less():
-    max = 20
-    text = 'a'* (max-9)
-    assert change_copy_item(text, max) == f'Copy of {text}'
-
-def test_change_copy_item_text_with_template():
-    assert change_copy_item('Copy of abcd') == 'Copy of abcd (2)'
-
-def test_change_copy_item_text_with_template_and_number():    
-    assert change_copy_item('Copy of abcd (1)') == 'Copy of abcd (2)'
-    assert change_copy_item('Copy of abcd (4)') == 'Copy of abcd (5)'
-
-def test_change_copy_item_title_template_len_max():
-    text = 'Copy of' + 'a'*92
-    assert change_copy_item(text) == text
+def test_change_copy_item_title_len_equals_92(text, max, expected_result):
+    assert change_copy_item(text, max) == expected_result
