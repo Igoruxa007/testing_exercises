@@ -1,5 +1,5 @@
 import datetime
-
+import os
 import pytest
 
 from functions.level_1.four_bank_parser import SmsMessage, BankCard, Expense
@@ -96,3 +96,32 @@ def studentstudents_with_tg():
         Student(first_name="First", last_name= "Second", telegram_account=None)
         ]
     return students
+
+@pytest.fixture
+def filepath():
+    path_to_file = "test_file.py"
+    with open(path_to_file, "w") as file:
+        file.writelines(
+            ['[tool:app-config]\n', 
+             'url = asdf\n', 
+             '#fields = klhu\n',
+             'extra_fields = 1asd: 1+1\n',
+             '[base]\n', 
+             'BJFDSF = AKLFDJGLF\n']
+            )
+    yield path_to_file
+
+    os.remove(path_to_file)
+
+@pytest.fixture
+def filepath_without_extra():
+    path_to_file = "test_file.py"
+    with open(path_to_file, "w") as file:
+        file.writelines(
+            ['[tool:app-config]\n', 
+             'url = asdf\n', 
+             'BJFDSF = AKLFDJGLF\n']
+            )
+    yield path_to_file
+
+    os.remove(path_to_file)
